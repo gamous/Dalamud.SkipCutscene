@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <PlatformTarget>x64</PlatformTarget>
     <Platforms>x64;AnyCPU</Platforms>
@@ -9,12 +9,16 @@
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Dalamud">
-      <HintPath>..\Lib\Dalamud\Dalamud.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+	<PropertyGroup>
+		<DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+		<PluginVersion>1.0.2.7</PluginVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="Dalamud">
+			<HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="DalamudPackager" Version="2.1.8" />
   </ItemGroup>
