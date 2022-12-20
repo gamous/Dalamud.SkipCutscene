@@ -10,7 +10,6 @@
 		<None Include="..\.editorconfig" Link=".editorconfig" />
 	</ItemGroup>
 	<PropertyGroup>
-		<AssemblyVersion>1.2.2.1</AssemblyVersion>
 		<DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
 		<OutputPath>$(appdata)\XIVLauncher\devPlugins\SkipCutscene</OutputPath>
 	</PropertyGroup>

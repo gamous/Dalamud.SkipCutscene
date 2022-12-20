@@ -15,7 +15,6 @@ namespace Plugins.a08381.SkipCutscene
     {
 
         private readonly Config _config;
-        private readonly RNGCryptoServiceProvider _csp;
 
         private readonly decimal _base = uint.MaxValue;
 
@@ -44,12 +43,8 @@ namespace Plugins.a08381.SkipCutscene
                 return;
             }
 
-            _csp = new RNGCryptoServiceProvider();
 
-            CommandManager.AddHandler("/sc", new CommandInfo(OnCommand)
-            {
-                HelpMessage = "/sc: Roll your sanity check dice."
-            });
+            
         }
 
         public void Dispose()
@@ -89,19 +84,6 @@ namespace Plugins.a08381.SkipCutscene
             }
         }
 
-        private void OnCommand(string command, string arguments)
-        {
-            if (command.ToLower() != "/sc") return;
-            byte[] rndSeries = new byte[4];
-            _csp.GetBytes(rndSeries);
-            int rnd = (int)Math.Abs(BitConverter.ToUInt32(rndSeries, 0) / _base * 50 + 1);
-            ChatGui.Print(_config.IsEnabled
-                ? $"sancheck: 1d100={rnd + 50}, Failed"
-                : $"sancheck: 1d100={rnd}, Passed");
-            _config.IsEnabled = !_config.IsEnabled;
-            SetEnabled(_config.IsEnabled);
-            Interface.SavePluginConfig(_config);
-        }
     }
 
     public class CutsceneAddressResolver : BaseAddressResolver
